@@ -28,10 +28,10 @@ public class EtsyAPIHelper {
 	private final String apiKey = "hdl75lh8uw8egpv88glrjahf";
 	private final String getShopIdURL = "http://openapi.etsy.com/v2/shops";
 	private final String getShopListingURL = "http://openapi.etsy.com/v2/shops/";
-	private final int MAXSHOPS = 50;
+	private final int MAXSHOPS = 100;
 	private final int MAXTAGNAMES = 5;
 	private final int RESULTFETCHLIMIT = 100;
-	private final String outputFileName = "shopidtagname.csv";
+	private final String outputFileName = "output/shopidtagname.csv";
 	private long[] shopIdArray;
 	private HashMap<Long, String> shopIdNameMap;
 	private HashMap<Long, LinkedHashMap<String, Integer>> shopIdTagNameMap;
@@ -43,7 +43,7 @@ public class EtsyAPIHelper {
 	}
 	
 	protected void processWait(int time){
-		System.out.println("Process will wait for "+(time)+" milliseconds to support API Access Policy");
+		System.out.println("Process will wait for "+(time)+" milliseconds to support API Access Policy\n");
 		try{
 			Thread.sleep(time);
 		} catch (Throwable t){
@@ -117,7 +117,7 @@ public class EtsyAPIHelper {
 	
 	public void writeResultsToFile() throws IOException{
 		try{
-			System.out.println("Creating output file to record shop names and related tags");
+			System.out.println("Creating output file to record shop names and related tags\n");
 			FileWriter fstream = new FileWriter(outputFileName);
 			BufferedWriter out = new BufferedWriter(fstream);
 			int shopIdIter=0;
@@ -132,7 +132,7 @@ public class EtsyAPIHelper {
 				}
 				shopIdIter++;
 			}
-			System.out.println("Created output file at ./"+outputFileName);
+			System.out.println("Created output file at ./"+outputFileName+"\n");
 			out.close();
 		} catch (IOException e){
 			System.out.println("IOException : " + e.toString());
@@ -186,7 +186,7 @@ public class EtsyAPIHelper {
 				offset = offset+RESULTFETCHLIMIT;
 				processWait(1000);
 			}
-			return "Shop IDs fetched from the Etsy API using : "+getShopIdURL;	
+			return "Shop IDs fetched from the Etsy API using : "+getShopIdURL+"\n";	
 		} catch(MalformedURLException mue){
 			return mue.toString();
 		} catch(IOException ioe){
@@ -198,6 +198,7 @@ public class EtsyAPIHelper {
 	
 	public String getTagByShopIdFromAPI() throws MalformedURLException, IOException, ParseException{
 		try{
+			System.out.println("Fetching TagNames for each of the shopIDs from "+getShopListingURL+"\n");
 			for(int shopIdIter=0;shopIdIter<shopIdArray.length;shopIdIter++){
 				URL getListingURL = new URL(getShopListingURL+shopIdArray[shopIdIter]+"/listings/active"+"?api_key="+apiKey);
 				String jsonString = getJSONString(getListingURL);
@@ -222,7 +223,7 @@ public class EtsyAPIHelper {
 				mapToSort = shopIdTagNameMap.get(shopIdArray[shopIdIter]);
 				shopIdTagNameMap.put(shopIdArray[shopIdIter],sortHashMapByValues(mapToSort));
 			}
-			return "Tag Names for each Shop Id fetched";
+			return "Tag Names for each Shop Id fetched\n";
 		} catch(MalformedURLException mue){
 			return mue.toString();
 		} catch(IOException ioe){
