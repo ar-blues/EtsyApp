@@ -1,1 +1,1 @@
-An simple app using the ETSY API
+A simple app using the ETSY API
