@@ -12,6 +12,7 @@ import java.net.URLConnection;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -33,12 +34,12 @@ public class EtsyAPIHelper {
 	private final String outputFileName = "shopidtagname.csv";
 	private long[] shopIdArray;
 	private HashMap<Long, String> shopIdNameMap;
-	private HashMap<Long, HashMap<String, Integer>> shopIdTagNameMap;
+	private HashMap<Long, LinkedHashMap<String, Integer>> shopIdTagNameMap;
 	
 	public EtsyAPIHelper(){
 		shopIdArray = new long[MAXSHOPS];
 		shopIdNameMap = new HashMap<Long, String>();
-		shopIdTagNameMap = new HashMap<Long, HashMap<String,Integer>>();
+		shopIdTagNameMap = new HashMap<Long, LinkedHashMap<String,Integer>>();
 	}
 	
 	protected void processWait(int time){
@@ -87,12 +88,13 @@ public class EtsyAPIHelper {
 		
 	}
 	
-	protected LinkedHashMap<String,Integer> sortHashMapByValues(HashMap<String,Integer> passedMap) {
+	protected LinkedHashMap<String,Integer> sortHashMapByValues(LinkedHashMap<String,Integer> passedMap) {
 	    List<String> mapKeys = new ArrayList<String>(passedMap.keySet());
 	    List<Integer> mapValues = new ArrayList<Integer>(passedMap.values());
-	    System.out.println(passedMap);
-	    Collections.reverse(mapValues);
-	    Collections.reverse(mapKeys);
+	    Comparator<String> keyComparator = Collections.reverseOrder();
+	    Comparator<Integer> valueComparator = Collections.reverseOrder();
+	    Collections.sort(mapKeys,keyComparator);
+	    Collections.sort(mapValues,valueComparator);
 	    LinkedHashMap<String,Integer> sortedMap = new LinkedHashMap<String,Integer>();	    
 	    Iterator<Integer> valueIt = mapValues.iterator();
 	    while (valueIt.hasNext()) {
@@ -200,7 +202,7 @@ public class EtsyAPIHelper {
 				URL getListingURL = new URL(getShopListingURL+shopIdArray[shopIdIter]+"/listings/active"+"?api_key="+apiKey);
 				String jsonString = getJSONString(getListingURL);
 				JSONArray jsonResult = getJSONArrayFromString(jsonString);
-				HashMap<String, Integer> tagnamecount = new HashMap<String, Integer>();
+				LinkedHashMap<String, Integer> tagnamecount = new LinkedHashMap<String, Integer>();
 				for(int jsonIter=0;jsonIter<jsonResult.size();jsonIter++){
 					JSONObject shopListingObj = (JSONObject) jsonResult.get(jsonIter);
 					JSONArray tagNameArray= (JSONArray) shopListingObj.get("tags");
@@ -216,7 +218,7 @@ public class EtsyAPIHelper {
 				shopIdTagNameMap.put(shopIdArray[shopIdIter], tagnamecount);
 			}
 			for(int shopIdIter=0;shopIdIter<shopIdArray.length;shopIdIter++){
-				HashMap<String,Integer> mapToSort = new HashMap<String, Integer>();
+				LinkedHashMap<String,Integer> mapToSort = new LinkedHashMap<String, Integer>();
 				mapToSort = shopIdTagNameMap.get(shopIdArray[shopIdIter]);
 				shopIdTagNameMap.put(shopIdArray[shopIdIter],sortHashMapByValues(mapToSort));
 			}
