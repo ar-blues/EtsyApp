@@ -28,13 +28,13 @@ public class EtsyAPIHelper {
 	private final String apiKey = "hdl75lh8uw8egpv88glrjahf";
 	private final String getShopIdURL = "http://openapi.etsy.com/v2/shops";
 	private final String getShopListingURL = "http://openapi.etsy.com/v2/shops/";
-	private final int MAXSHOPS = 100;
-	private final int MAXTAGNAMES = 5;
-	private final int RESULTFETCHLIMIT = 100;
-	private final String outputFileName = "output/shopidtagname.csv";
-	private long[] shopIdArray;
-	private HashMap<Long, String> shopIdNameMap;
-	private HashMap<Long, LinkedHashMap<String, Integer>> shopIdTagNameMap;
+	protected int MAXSHOPS = 100;
+	protected int MAXTAGNAMES = 5;
+	protected int RESULTFETCHLIMIT = 100;
+	protected String outputFileName = "output/shopidtagname.csv";
+	protected long[] shopIdArray;
+	protected HashMap<Long, String> shopIdNameMap;
+	protected HashMap<Long, LinkedHashMap<String, Integer>> shopIdTagNameMap;
 	
 	public EtsyAPIHelper(){
 		shopIdArray = new long[MAXSHOPS];

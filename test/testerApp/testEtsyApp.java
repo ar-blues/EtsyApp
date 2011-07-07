@@ -17,7 +17,12 @@ import org.junit.runner.notification.Failure;
 
 
 public class testEtsyApp extends EtsyAPIHelper{
-
+	public testEtsyApp(){
+		super.MAXSHOPS = 5;
+		super.MAXTAGNAMES = 2;
+		super.RESULTFETCHLIMIT = 50;
+		super.outputFileName = "output/testOutput.csv";
+	}
 	@Test
 	public void TestSortHashMapByValues() {
 		LinkedHashMap<String,Integer> unsortedMap = new LinkedHashMap<String, Integer>();
@@ -71,6 +76,19 @@ public class testEtsyApp extends EtsyAPIHelper{
 		} catch(ParseException pe){
 			System.out.println("ParseException: "+pe.toString());
 		}
+	}
+	@Test
+	public void TestGetShopIdFromAPI()  throws MalformedURLException, IOException, ParseException{
+		try{
+			System.out.println(super.getShopIdFromAPI());
+			assertEquals(super.MAXSHOPS, super.shopIdArray.length);
+		} catch(MalformedURLException mue){
+			System.out.println("MalformedURLException: "+mue.toString());
+		} catch(IOException ioe){
+			System.out.println("IOException: "+ioe.toString());
+		} catch(ParseException pe){
+			System.out.println("ParseException: "+pe.toString());
+		} 
 	}
 	public static void main(String args[]){
 		Result result = JUnitCore.runClasses(testEtsyApp.class);
