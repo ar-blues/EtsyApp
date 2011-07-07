@@ -26,7 +26,7 @@ Source:
 
 Test:
 
-	Unit Test cases are present in the test/ folder
+	Unit Test cases are present in the test/ folder. The testEtsyApp.java is present as a standalone file. If the file has to be deployed as a solution it can be included in the build.xml for testing purposes.
 
 Installation:
 
