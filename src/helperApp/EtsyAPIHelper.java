@@ -128,8 +128,12 @@ public class EtsyAPIHelper {
 	 * Method Name	:	sortHashMapByValues
 	 * Input		: 	passedMap (LinkedHashMap<String,Integer>)
 	 * Returns		: 	LinkedHashMap<String,Integer> 
-	 * Output		:	sorts a LinkedHashMap<Key,Value> based on the values and returns the sorted LinkedhashMap. The LinkedHashMap 
-	 * 					is used to harness its property of storing elements in the order of their entry which is not the case with the HashMap.  
+	 * Output		:	sorts a LinkedHashMap<Key,Value> in Descending Order based on the values and returns the sorted LinkedhashMap. 
+	 * 					The LinkedHashMap is used to harness its property of storing elements in the order of their entry which is not
+	 * 					the case with the HashMap.
+	 * Note			: 	The sort follows a stable mechanism wherein if there are records containing the same value, then they are inserted into
+	 * 					the result based on their existing order in reverse (due to descending order).
+	 * 					(Eg.) {<k1,3>,<k2,1>,<k3,4>,<k4,1>} is sorted as {<k3,4>,<k1,3>,<k4,1>,<k2,1>} 				  
 	 * 
 	 */
 	protected LinkedHashMap<String,Integer> sortHashMapByValues(LinkedHashMap<String,Integer> passedMap) {
