@@ -30,13 +30,27 @@ Test:
 
 Installation:
 
-	Download the EtsyApp.jar and the runEtsyApp.bat files into a folder
+	(Windows Users) : Download the EtsyApp.jar and the runEtsyApp.bat files into a folder
+        (Unix Users)    : Download the EtsyApp.jar and the runEtsyApp.sh files into a folder 
 
 Running:
+        (Windows Users) :
+ 
 	Open a terminal(DOS) and navigate to folder the containg the .bat & .jar files.
+
 	Type "runEtsyApp.bat" and press Enter
 
 	Refer to the screenshot for an illustration.	
+
+       (Unix Users)    :
+        
+       Open a terminal and navigate to the folder containing the .sh file
+
+       Type "chmod 755 runEtsyApp.sh" to grant the shell script permission to execute
+
+       Type "./runEtsyApp.sh" and Enter
+
+       Refer to the screenshot for an illustration
 
 TODO:
 	Create a .sh file for *nix users
