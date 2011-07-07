@@ -48,7 +48,7 @@ public class EtsyAPIHelper {
 	protected int MAXSHOPS = 100;
 	protected int MAXTAGNAMES = 5;
 	protected int RESULTFETCHLIMIT = 100;
-	protected String outputFileName = "output/shopidtagname.csv";
+	protected String outputFileName = "shopidtagname.csv";
 	protected long[] shopIdArray;
 	protected HashMap<Long, String> shopIdNameMap;
 	protected HashMap<Long, LinkedHashMap<String, Integer>> shopIdTagNameMap;
@@ -166,7 +166,7 @@ public class EtsyAPIHelper {
 	 * Method Name	:	writeResultsToFile
 	 * Input		: 	None
 	 * Returns		: 	Nothing 
-	 * Output		:	Writes records of the format {shopName, Tagname, Count} to the output file located at output/shopidtagname.csv
+	 * Output		:	Writes records of the format {shopName, Tagname, Count} to the output file located at shopidtagname.csv
 	 * 					The records are created from the properties/structures shopIdArray and shopIdTagNameMap.      
 	 * 
 	 */

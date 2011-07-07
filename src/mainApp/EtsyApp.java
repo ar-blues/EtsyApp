@@ -15,7 +15,7 @@ public class EtsyApp {
 	 * Method Name	:	main
 	 * Input		: 	None
 	 * Returns		: 	Nothing
-	 * Output		:	Creates a file containing records of the format {shopName, Tagname, Count} in output/shopidtagname.csv. 
+	 * Output		:	Creates a file containing records of the format {shopName, Tagname, Count} in shopidtagname.csv. 
 	 * 					Prints on the terminal records of the format {shopName: tag1, tag2 .. tag5} [top 5 tags based on the count]
 	 * 
 	 */

@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import org.json.simple.JSONArray;
@@ -29,7 +28,7 @@ public class testEtsyApp extends EtsyAPIHelper{
 		super.MAXSHOPS = 5;
 		super.MAXTAGNAMES = 2;
 		super.RESULTFETCHLIMIT = 50;
-		super.outputFileName = "output/testOutput.csv";
+		super.outputFileName = "testOutput.csv";
 		super.shopIdArray = new long[MAXSHOPS];
 	}
 	/*
