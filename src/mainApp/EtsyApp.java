@@ -1,12 +1,24 @@
 package mainApp;
 
 import helperApp.EtsyAPIHelper;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 
+/*
+ * The EtsyApp class contains the main method which executes the getShopIDFromAPI and getTagByShopIdFromAPI
+ * from the EtsyAPIHelperClass
+ * 
+ */
 public class EtsyApp {
+	/*
+	 * Method Name	:	main
+	 * Input		: 	None
+	 * Returns		: 	Nothing
+	 * Output		:	Creates a file containing records of the format {shopName, Tagname, Count} in output/shopidtagname.csv. 
+	 * 					Prints on the terminal records of the format {shopName: tag1, tag2 .. tag5} [top 5 tags based on the count]
+	 * 
+	 */
 	public static void main(String args[]) throws IOException, MalformedURLException, ParseException{
 		try{
 			EtsyAPIHelper etsyExampleApp = new EtsyAPIHelper();
