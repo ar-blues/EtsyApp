@@ -37,6 +37,8 @@ Running:
 	Type "runEtsyApp.bat" and press Enter
 
 	Refer to the screenshot for an illustration.	
-	
+
+TODO:
+	Create a .sh file for *nix users
 
 
